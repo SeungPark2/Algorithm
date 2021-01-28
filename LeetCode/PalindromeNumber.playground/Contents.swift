@@ -8,7 +8,7 @@ func isPalindrome(_ x: Int) -> Bool {
 
 func isPalindrome(_ x: Int) -> Bool {
         
-    guard x >= 0 else { return true }
+    guard x >= 0 else { return false } // modify
     
     let convertingString = String(x)
     
