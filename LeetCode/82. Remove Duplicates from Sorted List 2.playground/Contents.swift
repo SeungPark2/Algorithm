@@ -9,30 +9,38 @@ public class ListNode {
  }
 
 func deleteDuplicates(_ head: ListNode?) -> ListNode? {
-        
+    
     let headNode: ListNode? = ListNode()
     headNode?.next = head
+    
+    var pre = headNode
     var currentNode: ListNode? = headNode?.next
             
     while currentNode != nil {
         
-        if let current = currentNode,
-           let next = currentNode?.next {
+        if currentNode?.val == currentNode?.next?.val {
             
-            if current.val == next.val {
+            while currentNode?.next?.val == currentNode?.val {
                 
-                currentNode?.next = next.next
-                currentNode = next.next
-                continue
+                currentNode = currentNode?.next
             }
+            
+            pre?.next = currentNode?.next
+            currentNode = currentNode?.next
         }
-        
-        currentNode = currentNode?.next
+        else {
+            
+            pre = currentNode
+            currentNode = currentNode?.next
+        }
     }
     
     return headNode?.next
 }
 
-// 112 -> 12
-// 11233 -> 123
-// 111 -> 1
+var node = deleteDuplicates(ListNode(1, ListNode(2, ListNode(3, ListNode(3)))))
+while node != nil {
+    
+    print(node?.val)
+    node = node?.next
+}
